@@ -1,0 +1,43 @@
+<div class="text-white"></div>
+    <h3>Angry Bots - Interactive Audio Demo</h3>
+    <h6>Top-down shooter game (Unity | C# | Wwise), updated to showcase interactive audio</h6>
+    <ul style="text-align: justify;">
+        
+        <li>Wwise project setup based on gameplay requirements </li>
+        <li>Composed a suite of 4 music tracks (one for each section of the game).</li>
+        <ul>
+            <li>Each section has two layers, where the 2nd layer is activated when you kill all the enemies in the current stage section.</li>
+            <li>Also, each section has an "inside" and "outside" sub-section, which is simpler (just a few bars), so you can focus on the outside ambience.</li>
+            <li>The last section contains a rhythm change, along with a custom 'transition' section to smoothly connect the third section to the last one.</li>
+            <li>Finally, this final section is linked to the 'you win' music, which has the same rhythm but a different melody.</li>
+        </ul>
+        <li>Designed and integrated sfxs for enemies, weapons and ambiences.</li>
+        <ul>
+            <li>Each enemy has an attack start sfx and a die sfx, with multiple variations, with random pitch changes each time.</li>
+            <li>Weapons (shot and impact) also have multiple variations, with random pitch to improve replayability.</li>
+            <li>The game has two ambiences: Inside and Outside, which switch depending on whether the player is inside or outside the base.</li>
+        </ul>
+        <li>Custom components were created to react to different game states:</li>
+        <ul>
+            <li>Enemies killed RTPC to activate the second layer of each music section</li>
+            <li>Weapon fire and hit sfx handlers to play different sfx based on weapon type fired and material hit (e.g. rocket hits metal).</li>
+            <li>Footsteps handler to play them based on the material you are walking on (using Wwise switches)</li>
+            <li>Stage section handler, to control which music section to play via "Wwise" state change.</li>
+        </ul>
+    </ul>
+    <p>I also converted the game from UnityScript (Js) to C# so I could update the original Unity4 project to Unity 2022.</p>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-5  text-center" style="padding-bottom: 1rem;"> <!-- Audio Samples Section -->
+                <iframe width="100%" height="100px" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/293640167&color=%232d2c34&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/raul-ibarra-aranda" title="Raúl Emmanuel Ibarra Aranda" target="_blank" style="color: #cccccc; text-decoration: none;">Raúl Emmanuel Ibarra Aranda</a> · <a href="https://soundcloud.com/raul-ibarra-aranda/sound-design-demo-reel-angry-bots-unity-demo" title="Sound Design Demo Reel - Angry Bots Unity Demo" target="_blank" style="color: #cccccc; text-decoration: none;">Sound Design Demo Reel - Angry Bots Unity Demo</a></div>
+            </div>
+            <div class="col-7"> <!-- Video Section -->
+                <iframe frameborder="0" src="https://itch.io/embed/307450?dark=true" height="150px" width="100%"><a href="https://gamingsoft.itch.io/asteroids-game-demo">Angry Bots Interactive Audio Demo</a></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr>
+<hr class="hr hr-blurry" style="border-color:aliceblue;margin-top: 25pt;" />

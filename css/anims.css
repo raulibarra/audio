@@ -1,0 +1,9 @@
+/* Style for divs */
+.toggle-div {
+    display: none; /* Initially hidden */
+    padding: 20px;
+    margin-top: 10px;
+}
+.visible {
+    display: block; /* Show when visible */
+}
