@@ -1,31 +1,19 @@
 <div class="text-white"></div>
     <h3>Angry Bots - Interactive Audio Demo</h3>
     <h6>Top-down shooter game (Unity | C# | Wwise), updated to showcase interactive audio</h6>
-    <ul style="text-align: justify;">
-        
-        <li>Wwise project setup based on gameplay requirements </li>
-        <li>Composed a suite of 4 music tracks (one for each section of the game).</li>
-        <ul>
-            <li>Each section has two layers, where the 2nd layer is activated when you kill all the enemies in the current stage section.</li>
-            <li>Also, each section has an "inside" and "outside" sub-section, which is simpler (just a few bars), so you can focus on the outside ambience.</li>
-            <li>The last section contains a rhythm change, along with a custom 'transition' section to smoothly connect the third section to the last one.</li>
-            <li>Finally, this final section is linked to the 'you win' music, which has the same rhythm but a different melody.</li>
+    
+    <p>
+        <strong>Audio Programming | Music & Sound Design</strong>
+        <ul style="text-align: justify;">
+            <li>Set up a Wwise project tailored to gameplay needs, including music composition, sound effects, and dynamic audio integration.</li>
+            <li>Composed four music tracks, each corresponding to a different game section, with dual-layered music that activates based on enemy kills.</li>
+            <li>Designed seamless transitions, including rhythm changes in the final section, linking to the "you win" music with a matching rhythm but different melody.</li>
+            <li>Created and implemented enemy, weapon, and ambient SFX with multiple variations and randomized pitch for increased replayability.</li>
+            <li>Integrated inside and outside ambiences that switch based on player location, enhancing immersion.</li>
+            <li>Built custom audio components using RTPCs, switches, and state changes to control music layers, weapon impacts, footstep sounds, and stage transitions.</li>
+            <li>Converted the original UnityScript project to C# to update from Unity4 to Unity 2022.</li>
         </ul>
-        <li>Designed and integrated sfxs for enemies, weapons and ambiences.</li>
-        <ul>
-            <li>Each enemy has an attack start sfx and a die sfx, with multiple variations, with random pitch changes each time.</li>
-            <li>Weapons (shot and impact) also have multiple variations, with random pitch to improve replayability.</li>
-            <li>The game has two ambiences: Inside and Outside, which switch depending on whether the player is inside or outside the base.</li>
-        </ul>
-        <li>Custom components were created to react to different game states:</li>
-        <ul>
-            <li>Enemies killed RTPC to activate the second layer of each music section</li>
-            <li>Weapon fire and hit sfx handlers to play different sfx based on weapon type fired and material hit (e.g. rocket hits metal).</li>
-            <li>Footsteps handler to play them based on the material you are walking on (using Wwise switches)</li>
-            <li>Stage section handler, to control which music section to play via "Wwise" state change.</li>
-        </ul>
-    </ul>
-    <p>I also converted the game from UnityScript (Js) to C# so I could update the original Unity4 project to Unity 2022.</p>
+    </p>        
     
     <div class="container">
         <div class="row">
