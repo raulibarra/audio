@@ -28,8 +28,8 @@
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">ABOUT</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#mainSkills">Skills</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#games-portfolio" onclick="return showGames();">FEATURED PROJECTS</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#projects-portfolio" onclick="return showPersonal();" >PERSONAL PROJECTS</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#games-portfolio" onclick="return toggleDiv('games-portfolio');">FEATURED PROJECTS</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#projects-portfolio" onclick="return toggleDiv('projects-portfolio');" >PERSONAL PROJECTS</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">CONTACT</a></li>
                     </ul>
                 </div>
@@ -48,8 +48,8 @@
         </section>
 
         <section class="page-section bg-indigo portfolio text-white" id="portfolio">
-            <div id="games-portfolio" class="container toggle-div visible" include-html="html_content/games_content/games_index.html"></div>
-            <div id="projects-portfolio" class="container toggle-div" include-html="html_content/personal_content/personal_index.html"></div>
+            <div toggle-group="portfolio-item" id="games-portfolio" class="container toggle-div visible" include-html="html_content/games_content/games_index.html"></div>
+            <div toggle-group="portfolio-item" id="projects-portfolio" class="container toggle-div" include-html="html_content/personal_content/personal_index.html"></div>
         </section>
 
         <footer class="footer text-center" id="contact">
@@ -69,7 +69,9 @@
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
 
-        <script>includeHTML();</script>
+        <script>
+            includeHTML().then(()=>{ autoCheckForHashRedirects(); });
+        </script>
 
     </body>
 </html>
