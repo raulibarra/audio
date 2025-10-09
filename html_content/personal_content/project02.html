@@ -1,28 +1,46 @@
-<div class="text-white"></div>
+<div class="text-white">
     <h3>Angry Bots - Interactive Audio Demo</h3>
-    <h6>Top-down shooter game (Unity | C# | Wwise), updated to showcase interactive audio</h6>
-    
-    <p>
-        <strong>Audio Programming | Music & Sound Design</strong>
-        <ul style="text-align: justify;">
-            <li>Set up a Wwise project tailored to gameplay needs, including music composition, sound effects, and dynamic audio integration.</li>
-            <li>Composed four music tracks, each corresponding to a different game section, with dual-layered music that activates based on enemy kills.</li>
-            <li>Designed seamless transitions, including rhythm changes in the final section, linking to the "you win" music with a matching rhythm but different melody.</li>
-            <li>Created and implemented enemy, weapon, and ambient SFX with multiple variations and randomized pitch for increased replayability.</li>
-            <li>Integrated inside and outside ambiences that switch based on player location, enhancing immersion.</li>
-            <li>Built custom audio components using RTPCs, switches, and state changes to control music layers, weapon impacts, footstep sounds, and stage transitions.</li>
-            <li>Converted the original UnityScript project to C# to update from Unity4 to Unity 2022.</li>
-        </ul>
-    </p>        
-    
-    <div class="container">
-        <div class="row">
-            <div class="col-5  text-center" style="padding-bottom: 1rem;"> <!-- Audio Samples Section -->
-                <iframe width="100%" height="100px" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/293640167&color=%232d2c34&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/raul-ibarra-aranda" title="Raúl Emmanuel Ibarra Aranda" target="_blank" style="color: #cccccc; text-decoration: none;">Raúl Emmanuel Ibarra Aranda</a> · <a href="https://soundcloud.com/raul-ibarra-aranda/sound-design-demo-reel-angry-bots-unity-demo" title="Sound Design Demo Reel - Angry Bots Unity Demo" target="_blank" style="color: #cccccc; text-decoration: none;">Sound Design Demo Reel - Angry Bots Unity Demo</a></div>
+    <h6>Wwise Integration: RTPC-Driven Dynamic Mixing & Layered Music System</h6>
+    <p><strong>Technical showcase demonstrating professional Wwise middleware integration, RTPC-controlled adaptive music, and data-driven audio design for Unity projects.</strong></p>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- Left Column: Metadata + Technical Details -->
+        <div class="col-lg-6" style="text-align: justify;">
+            <div style="background-color: rgba(60, 65, 121, 0.2); padding: 1rem; margin-bottom: 1rem; border-left: 3px solid #3c4179;">
+                <strong>Role:</strong> <i>Audio / Gameplay Programmer, Sound Designer, Composer</i><br/>
+                <strong>Engine & Tools:</strong> Unity 2022 (upgraded from Unity 4), C#, Wwise<br>
+                <strong>Genre:</strong> Top-Down Shooter<br>
+                <strong>Audio Approach:</strong> RTPC-driven layering, state-based transitions, spatial ambience
             </div>
-            <div class="col-7"> <!-- Video Section -->
-                <iframe frameborder="0" src="https://itch.io/embed/307450?dark=true" height="150px" width="100%"><a href="https://gamingsoft.itch.io/asteroids-game-demo">Angry Bots Interactive Audio Demo</a></iframe>
+
+            <strong>Technical Audio Implementation:</strong>
+            <ul>
+                <li><strong>Architected Wwise project structure</strong> with RTPC-controlled dual-layer music system responding to kill count, implementing smooth parameter interpolation and beat-synced transitions across 4 gameplay sections</li>
+                <li><strong>Engineered state-driven audio architecture</strong> using Wwise switches and game states for seamless music transitions (including rhythm changes in final section), demonstrating advanced middleware configuration and callback integration</li>
+                <li><strong>Implemented spatial ambience system</strong> with inside/outside environment switching based on player position, using Wwise's 3D positioning and attenuation curves for realistic acoustic transitions</li>
+                <li><strong>Designed randomized SFX system</strong> with multi-variation containers and pitch modulation for weapons, enemies, and environmental sounds, optimizing asset reuse and reducing memory footprint while maintaining audio variety</li>
+            </ul>
+        </div>
+
+        <!-- Right Column: Media -->
+        <div class="col-lg-6">
+            <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/293640167&color=%232d2c34&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+            <div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;">
+                <a href="https://soundcloud.com/raul-ibarra-aranda" title="Raúl Emmanuel Ibarra Aranda" target="_blank" style="color: #cccccc; text-decoration: none;">Raúl Emmanuel Ibarra Aranda</a> · 
+                <a href="https://soundcloud.com/raul-ibarra-aranda/sets/layered-action-music-sample" title="Sound Design Demo Reel - Angry Bots Unity Demo" target="_blank" style="color: #cccccc; text-decoration: none;">Sound Design Demo Reel - Angry Bots Unity Demo</a>
             </div>
+            <div style="margin-top: 1rem;">
+                <iframe width="100%" height="167" frameborder="0" src="https://itch.io/embed/307450?dark=true"><a href="https://gamingsoft.itch.io/asteroids-game-demo">Angry Bots Interactive Audio Demo</a></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Full-width Technical Achievement -->
+    <div class="row" style="margin-top: 0.75rem;">
+        <div class="col-12" style="text-align: justify;">
+            <strong>Technical Achievement:</strong> Migrated legacy Unity 4 project (UnityScript) to Unity 2022 with modern C# architecture and Wwise integration - demonstrating expertise in codebase modernization, version compatibility management, and middleware integration for legacy projects.
         </div>
     </div>
 </div>

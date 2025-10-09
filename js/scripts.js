@@ -127,4 +127,32 @@ function autoCheckForHashRedirects(){
   console.log(`${autoCheckForHashRedirects.name}: hash not found`);
   return false;
 }
+
+const texts = [
+  "Audio Programmer",
+  "Technical Music Composer",
+  "Game Audio Developer",
+  "Interactive Audio Specialist",
+  "Technical Sound Designer"
+];
+let index = 0;
+
+function cycleText() {
+  const subtitleElement = document.getElementById('subtitle');
+  if (!subtitleElement) return; // Guard against element not existing yet
   
+  subtitleElement.style.opacity = 0; // Start fade-out
+
+  setTimeout(() => {
+    subtitleElement.textContent = texts[index];
+    subtitleElement.style.opacity = 1; // Start fade-in
+    index = (index + 1) % texts.length;
+  }, 750); // Wait for fade-out to complete
+}
+
+function startCycleText() {
+  // Call it once immediately to show the first text
+  cycleText();
+  // Then set up the interval
+  setInterval(cycleText, 3000); // Change text every 3 seconds
+}

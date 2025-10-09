@@ -1,28 +1,48 @@
-<div class="text-white"></div>
+<div class="text-white">
     <h3>Simple FPS & MetaSounds Demo</h3>
-    <h6>3D FPS Game (Unreal | C++ | Blueprints | MetaSounds)</h6>
-    <p></p>
-        <strong>Concept</strong>: You have been sent to a rebel base occupied by cyborgs. Kill them all in order to claim the base for the alliance...
-    </p>
-    <p>
-        <strong>Audio Programming | Music & Sound Design</strong>
-        <ul style="text-align: justify;">
-            <li>Composed music and created sound design for weapons, impacts, footsteps, and death animations.</li>
-            <li>Developed an interactive horizontal resequencing music system using MetaSounds, with transitions synchronized to the music's tempo.</li>
-            <li>Created custom MetaSound nodes for random SFX playback, mimicking audio middleware features like random containers and pitch/volume variation.</li>
-            <li>Integrated animations with event notifiers to trigger footstep sounds and implemented dynamic mixing and ducking via custom sound classes.</li>
-        </ul>
-    </p>
-    <p style="text-align: justify;">Additionally, I created the gameplay logic, enemy AI, and UI using Blueprints and C++.</p>
+    <h6>MetaSounds Audio Pipeline: Custom Node Architecture & Event-Driven Implementation</h6>
+    <p><strong>Technical showcase demonstrating Unreal Engine 5 MetaSounds custom node development, procedural audio systems, and C++/Blueprint integration for real-time audio control.</strong></p>
+</div>
 
+<div class="container-fluid">
     <div class="row">
-        <div class="col-5">
-            <iframe width="100%" height="280" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1528494316&color=%23384055&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/raul-ibarra-aranda" title="Raúl Emmanuel Ibarra Aranda" target="_blank" style="color: #cccccc; text-decoration: none;">Raúl Emmanuel Ibarra Aranda</a> · <a href="https://soundcloud.com/raul-ibarra-aranda/sets/layered-action-music-sample" title="Layered Action Music Sample -" target="_blank" style="color: #cccccc; text-decoration: none;">Layered Action Music Sample -</a></div>
+        <!-- Left Column: Metadata + Technical Details -->
+        <div class="col-lg-6" style="text-align: justify;">
+            <div style="background-color: rgba(60, 65, 121, 0.2); padding: 1rem; margin-bottom: 1rem; border-left: 3px solid #3c4179;">
+                <strong>Role:</strong> <i>Audio / Gameplay Programmer, Sound Designer, Composer</i><br/>
+                <strong>Engine & Tools:</strong> Unreal Engine 5, C++, Blueprints, MetaSounds<br>
+                <strong>Genre:</strong> 3D First-Person Shooter<br>
+                <strong>Audio Approach:</strong> Custom MetaSounds nodes, horizontal resequencing, event-driven triggers
+            </div>
+
+            <strong>Technical Audio Implementation:</strong>
+            <ul>
+                <li><strong>Developed custom MetaSound nodes in C++</strong> for procedural SFX playback with randomized pitch/volume variation, replicating middleware functionality (random containers) directly in Unreal's native audio engine</li>
+                <li><strong>Architected horizontal resequencing interactive music system</strong> using MetaSounds with tempo-synced transitions and state management, implementing beat-accurate crossfades synchronized to gameplay events</li>
+                <li><strong>Integrated animation event notifiers</strong> with MetaSounds triggers for footstep timing, creating event-driven audio system linked to character animation state machine for precise synchronization</li>
+                <li><strong>Implemented dynamic mixing architecture</strong> using Unreal's Sound Class system with custom ducking/prioritization logic, optimizing voice allocation and CPU performance for combat scenarios</li>
+            </ul>
         </div>
-        <div class="col-7">
-            <iframe width="100%" frameborder="0" src="https://itch.io/embed/1784074?dark=true"><a href="https://gamingsoft.itch.io/simple-fps-metasounds-demo">Simple FPS & MetaSounds Demo</a></iframe>
+
+        <!-- Right Column: Media -->
+        <div class="col-lg-6">
+            <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1528494316&color=%23384055&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+            <div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;">
+                <a href="https://soundcloud.com/raul-ibarra-aranda" title="Raúl Emmanuel Ibarra Aranda" target="_blank" style="color: #cccccc; text-decoration: none;">Raúl Emmanuel Ibarra Aranda</a> · 
+                <a href="https://soundcloud.com/raul-ibarra-aranda/sets/layered-action-music-sample" title="Layered Action Music Sample -" target="_blank" style="color: #cccccc; text-decoration: none;">Layered Action Music Sample -</a>
+            </div>
+            <div style="margin-top: 1rem;">
+                <iframe width="100%" height="167" frameborder="0" src="https://itch.io/embed/1784074?dark=true"><a href="https://gamingsoft.itch.io/simple-fps-metasounds-demo">Simple FPS & MetaSounds Demo</a></iframe>
+            </div>
         </div>
-    </div>        
+    </div>
+
+    <!-- Full-width Technical Achievement -->
+    <div class="row" style="margin-top: 0.75rem;">
+        <div class="col-12" style="text-align: justify;">
+            <strong>Technical Achievement:</strong> Built complete gameplay systems in C++ and Blueprints including enemy AI behavior, weapon mechanics, and UI systems - demonstrating proficiency in Unreal Engine's architecture and the ability to integrate audio systems deeply with gameplay code for optimal performance and synchronization.
+        </div>
+    </div>
 </div>
 
 <hr>

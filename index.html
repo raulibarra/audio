@@ -27,9 +27,8 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">ABOUT</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#mainSkills">Skills</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#games-portfolio" onclick="return toggleDiv('games-portfolio');">FEATURED PROJECTS</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#projects-portfolio" onclick="return toggleDiv('projects-portfolio');" >PERSONAL PROJECTS</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#projects-portfolio" onclick="return toggleDiv('projects-portfolio');" >TECHNICAL SHOWCASES</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">CONTACT</a></li>
                     </ul>
                 </div>
@@ -70,7 +69,10 @@
         <script src="js/scripts.js"></script>
 
         <script>
-            includeHTML().then(()=>{ autoCheckForHashRedirects(); });
+            includeHTML().then(()=>{ 
+                autoCheckForHashRedirects();
+                startCycleText(); // Start the subtitle cycling after HTML is loaded
+            });
         </script>
 
     </body>
