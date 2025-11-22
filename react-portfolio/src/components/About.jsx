@@ -1,11 +1,11 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
-import { FaEnvelope, FaLinkedin, FaItchIo, FaCode, FaGamepad, FaMobileAlt, FaGlobe, FaVrCardboard, FaCodeBranch, FaJira, FaUsers, FaMusic, FaDrum, FaGuitar, FaMicrophone, FaVolumeUp, FaSlidersH, FaWaveSquare, FaLayerGroup, FaDatabase, FaTachometerAlt, FaCube, FaHeadphones, FaUncharted, FaUnity } from 'react-icons/fa';
-// import { FaPersonDotsFromLine } from 'react-icons/fa6'; // Note: Some icons might need specific imports or replacements if not available in standard fa
+import { FaEnvelope, FaLinkedin, FaItchIo, FaCode, FaVolumeUp } from 'react-icons/fa';
+import TechStack from './TechStack';
 
 const About = () => {
     return (
-        <section className="page-section bg-primary text-white mb-0" id="about">
+        <section className="page-section bg-premium-gradient text-white mb-0" id="about">
             <div className="container">
                 {/* About Section Content */}
                 <Row>
@@ -52,66 +52,7 @@ const About = () => {
 
                 {/* Main Skills Section */}
                 <div id="mainSkills">
-                    <br />
-                    <div className="container text-white">
-                        <div className="text-center">
-                            <h3 className="text-white d-inline-block mb-0">Core Skills</h3>
-                        </div>
-                        <hr className="hr hr-blurry" style={{ borderColor: 'aliceblue', marginTop: '25pt' }} />
-                        <Row>
-                            <Col lg={3}>
-                                <h4>Audio Programming</h4>
-                                <ul>
-                                    <li><FaCode /> Custom Audio Managers</li>
-                                    <li><FaWaveSquare /> Interactive Music Systems</li>
-                                    <li><FaSlidersH /> Dynamic Audio Mixing</li>
-                                    <li><FaTachometerAlt /> Performance Optimization</li>
-                                    <li><FaDatabase /> Middleware Integration</li>
-                                    <li><FaLayerGroup /> Object Pooling</li>
-                                    <li><FaCube /> Addressables Integration</li>
-                                </ul>
-                            </Col>
-                            <Col lg={3}>
-                                <h4>Middleware & Tools</h4>
-                                <ul>
-                                    <li><FaUncharted /> Wwise / FMOD</li>
-                                    <li><FaUncharted /> Metasounds</li>
-                                    <li><FaHeadphones /> Dolby Atmos</li>
-                                    <li><FaWaveSquare /> Google Resonance Audio</li>
-                                    <li><FaUnity /> Unity | <img style={{ verticalAlign: 'auto', paddingBottom: '5px' }} src="/assets/img/icons8-unreal-engine.svg" width="20" alt="Unreal" /> Unreal Engine</li>
-                                    <li><FaWaveSquare /> Pro Tools | Cubase | Reaper</li>
-                                </ul>
-                            </Col>
-                            <Col lg={3}>
-                                <h4>Sound Design & Music</h4>
-                                <ul>
-                                    <li><FaVolumeUp /> Sound Design</li>
-                                    <li><FaMicrophone /> Field Recording</li>
-                                    {/* <li><FaPersonDotsFromLine /> Foley Art</li> */}
-                                    <li><FaMusic /> Adaptive Music</li>
-                                    <li><FaHeadphones /> Spatial Audio (VR/Binaural)</li>
-                                    <li><FaSlidersH /> Procedural Audio</li>
-                                    <li><FaGuitar /> Audio Implementation</li>
-                                    <li><FaMusic /> Music Composition</li>
-                                    <li><FaDrum /> Orchestration</li>
-                                </ul>
-                            </Col>
-                            <Col lg={3}>
-                                <h4>Development & Workflow</h4>
-                                <ul>
-                                    <li><FaCode /> C# | C++ | Python</li>
-                                    <li><FaGamepad /> Multiplayer Systems</li>
-                                    <li><FaMobileAlt /> Mobile Optimization</li>
-                                    <li><FaGlobe /> WebGL Optimization</li>
-                                    <li><FaVrCardboard /> VR Audio Implementation</li>
-                                    <li><FaCodeBranch /> Git | Perforce | SVN</li>
-                                    <li><FaJira /> Agile/Scrum</li>
-                                    <li><FaUsers /> Cross-functional Collaboration</li>
-                                </ul>
-                            </Col>
-                        </Row>
-                        <hr className="hr hr-blurry" style={{ borderColor: 'aliceblue', marginTop: '25pt' }} />
-                    </div>
+                    <TechStack />
                 </div>
             </div>
         </section>

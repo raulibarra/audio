@@ -51,12 +51,7 @@ const Portfolio = () => {
                         </i>
                     </p>
                 </div>
-                {/* Icon Divider */}
-                <div className="divider-custom divider-light">
-                    <div className="divider-custom-line"></div>
-                    <div className="divider-custom-icon"><FaStar /></div>
-                    <div className="divider-custom-line"></div>
-                </div>
+                {/* Icon Divider Removed */}
 
                 {/* Portfolio Items */}
                 {activeTab === 'games-portfolio' && (
