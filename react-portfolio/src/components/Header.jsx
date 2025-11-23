@@ -77,6 +77,9 @@ const Header = () => {
                             <a href="#games-portfolio" className="btn-premium text-decoration-none">
                                 View Portfolio
                             </a>
+                            <a href="https://www.linkedin.com/in/raulxibarra" target="_blank" rel="noopener noreferrer" className="btn-premium text-decoration-none" style={{ borderColor: '#0077b5', color: '#fff', backgroundColor: 'rgba(0, 119, 181, 0.2)' }}>
+                                Connect on LinkedIn
+                            </a>
                             <a href="#contact" className="btn-premium text-decoration-none" style={{ borderColor: 'var(--text-secondary)', color: 'var(--text-secondary)' }}>
                                 Contact Me
                             </a>
