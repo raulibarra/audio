@@ -145,7 +145,7 @@ export const personalData = [
         subtitle: "Adaptive Music System & Biome-Based Spatial Audio Architecture",
         description: "Technical showcase demonstrating state-driven music systems, spatial audio optimization, and modular sound design architecture for open-world environments.",
         metadata: [
-            { label: "Role", value: "Audio / Gameplay Programmer, Sound Designer, Composer" },
+            { label: "Audio / Gameplay Programmer, Sound Designer, Composer", value: "" },
             { label: "Engine & Tools", value: "Unity, C#, Wwise, Google Resonance Audio" },
             { label: "Genre", value: "3D Third-Person Action/Adventure" },
             { label: "Audio Approach", value: "State-driven adaptive music, spatial audio, biome-based ambiences" }
@@ -169,7 +169,7 @@ export const personalData = [
         subtitle: "MetaSounds Audio Pipeline: Custom Node Architecture & Event-Driven Implementation",
         description: "Technical showcase demonstrating Unreal Engine 5 MetaSounds custom node development, procedural audio systems, and C++/Blueprint integration for real-time audio control.",
         metadata: [
-            { label: "Role", value: "Audio / Gameplay Programmer, Sound Designer, Composer" },
+            { label: "Audio / Gameplay Programmer, Sound Designer, Composer", value: "" },
             { label: "Engine & Tools", value: "Unreal Engine 5, C++, Blueprints, MetaSounds" },
             { label: "Genre", value: "3D First-Person Shooter" },
             { label: "Audio Approach", value: "Custom MetaSounds nodes, horizontal resequencing, event-driven triggers" }
@@ -193,7 +193,7 @@ export const personalData = [
         subtitle: "Wwise Integration: RTPC-Driven Dynamic Mixing & Layered Music System",
         description: "Technical showcase demonstrating professional Wwise middleware integration, RTPC-controlled adaptive music, and data-driven audio design for Unity projects.",
         metadata: [
-            { label: "Role", value: "Audio / Gameplay Programmer, Sound Designer, Composer" },
+            { label: "Audio / Gameplay Programmer, Sound Designer, Composer", value: "" },
             { label: "Engine & Tools", value: "Unity 2022 (upgraded from Unity 4), C#, Wwise" },
             { label: "Genre", value: "Top-Down Shooter" },
             { label: "Audio Approach", value: "RTPC-driven layering, state-based transitions, spatial ambience" }
@@ -217,7 +217,7 @@ export const personalData = [
         subtitle: "Vertical Resequencing System: Real-Time Gameplay-Responsive Music Architecture",
         description: "Technical showcase demonstrating vertical layering music system with real-time parameter tracking and Fabric middleware integration for interactive composition.",
         metadata: [
-            { label: "Role", value: "Audio / Gameplay Programmer, Sound Designer, Composer" },
+            { label: "Audio / Gameplay Programmer, Sound Designer, Composer", value: "" },
             { label: "Engine & Tools", value: "Unity, C#, Fabric Audio Middleware" },
             { label: "Genre", value: "2D Survival Shooter" },
             { label: "Audio Approach", value: "Vertical resequencing, real-time parameter control, gameplay-reactive music" }
@@ -241,7 +241,7 @@ export const personalData = [
         subtitle: "Custom Audio Manager: Object Pooling & Event-Driven Architecture",
         description: "Technical showcase demonstrating custom C# audio system architecture with object pooling, state-based music transitions, and modular component design without middleware dependencies.",
         metadata: [
-            { label: "Role", value: "Audio / Gameplay Programmer, Sound Designer, Composer" },
+            { label: "Audio / Gameplay Programmer, Sound Designer, Composer", value: "" },
             { label: "Engine & Tools", value: "Unity, C# (Custom Audio System)" },
             { label: "Genre", value: "2D Interactive Experience" },
             { label: "Audio Approach", value: "Custom audio manager, object pooling, state-driven transitions" }
