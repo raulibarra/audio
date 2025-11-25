@@ -1,0 +1,7 @@
+# React app source files (keep these organized in react-app/)
+react-app/node_modules/
+react-app/.vite/
+react-app/dist/
+
+# Build artifacts that should be in root are NOT ignored
+# (index.html, assets/, etc. are the deployed site)
