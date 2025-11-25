@@ -75,7 +75,7 @@ const TechStack = () => {
                             </li>
                             <li className="mb-3 d-flex align-items-center" style={{ color: 'var(--text-secondary)' }}>
                                 <span style={{ marginRight: '10px', color: 'var(--text-primary)' }}>
-                                    <img src="/assets/img/icons8-unreal-engine.svg" width="20" alt="Unreal" />
+                                    <img src="./assets/img/icons8-unreal-engine.svg" width="20" alt="Unreal" />
                                 </span> Unreal Engine
                             </li>
                             <li className="mb-3 d-flex align-items-center" style={{ color: 'var(--text-secondary)' }}>
