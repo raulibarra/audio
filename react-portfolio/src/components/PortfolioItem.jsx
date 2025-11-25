@@ -1,8 +1,8 @@
 import React from 'react';
-import { Row, Col, Carousel, Badge } from 'react-bootstrap';
+import { Row, Col, Carousel } from 'react-bootstrap';
 import { FaCode, FaTools, FaUser, FaBuilding, FaMicrochip } from 'react-icons/fa';
 
-const PortfolioItem = ({ title, subtitle, description, metadata, contributions, media, uniqueValue, techStack, technicalImages, soundcloudHeight = 100 }) => {
+const PortfolioItem = ({ title, subtitle, description, metadata, contributions, media, uniqueValue, techStack, technicalImages, showTechnical = false, soundcloudHeight = 100 }) => {
 
     // Helper to get icon for metadata label
     const getMetadataIcon = (label) => {
@@ -24,16 +24,19 @@ const PortfolioItem = ({ title, subtitle, description, metadata, contributions, 
                     {techStack && (
                         <div className="mt-2 mt-md-0 text-md-right">
                             {techStack.map((tech, idx) => (
-                                <Badge key={idx} pill bg="dark" className="mr-1 mb-1" style={{
-                                    border: '1px solid var(--accent-secondary)',
-                                    color: 'var(--accent-secondary)',
-                                    marginRight: '5px',
-                                    padding: '6px 10px',
+                                <span key={idx} className="mr-1 mb-1" style={{
+                                    display: 'inline-block',
+                                    backgroundColor: 'var(--accent-secondary)',
+                                    color: '#e0e0e0',
+                                    borderRadius: '50px',
+                                    marginRight: '8px',
+                                    padding: '6px 12px',
                                     fontWeight: '500',
-                                    fontSize: '0.85rem'
+                                    fontSize: '0.85rem',
+                                    boxShadow: '0 2px 5px rgba(0,0,0,0.2)'
                                 }}>
                                     {tech}
-                                </Badge>
+                                </span>
                             ))}
                         </div>
                     )}
@@ -144,7 +147,7 @@ const PortfolioItem = ({ title, subtitle, description, metadata, contributions, 
                         ))}
 
                         {/* Technical "Under the Hood" Carousel */}
-                        {technicalImages && technicalImages.length > 0 && (
+                        {showTechnical && technicalImages && technicalImages.length > 0 && (
                             <div className="mt-4 mb-4">
                                 <h6 className="text-white mb-3" style={{ opacity: 0.9, display: 'flex', alignItems: 'center', gap: '8px' }}>
                                     <FaCode /> Under the Hood: Implementation Details

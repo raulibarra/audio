@@ -31,6 +31,7 @@ export const gamesData = [
             { caption: "Custom Audio Manager Script (C#)", src: "" },
             { caption: "Unity Audio Mixer Routing", src: "" }
         ],
+        showTechnical: false,
         uniqueValue: "Dual audio + gameplay expertise eliminates programmer dependency and accelerates development."
     },
     {
@@ -60,6 +61,7 @@ export const gamesData = [
         technicalImages: [
             { caption: "Impact System Matrix (Scriptable Object)", src: "" }
         ],
+        showTechnical: false,
         uniqueValue: "Combined audio design with gameplay programming to build intelligent audio systems that respond to game state without requiring middleware."
     },
     {
@@ -94,6 +96,7 @@ export const gamesData = [
             { caption: "Wwise Project Hierarchy", src: "" },
             { caption: "Dolby Atmos Profiler", src: "" }
         ],
+        showTechnical: false,
         uniqueValue: "Expertise in spatial audio middleware (Wwise, Dolby Atmos) combined with gameplay programming enables end-to-end feature ownership."
     },
     {
@@ -123,6 +126,7 @@ export const gamesData = [
         technicalImages: [
             { caption: "Custom Music System Inspector", src: "" }
         ],
+        showTechnical: false,
         uniqueValue: "Built custom interactive music system from scratch without middleware, demonstrating deep Unity audio architecture knowledge."
     },
     {
@@ -151,6 +155,7 @@ export const gamesData = [
         technicalImages: [
             { caption: "Wwise Profiler Session", src: "" }
         ],
+        showTechnical: false,
         uniqueValue: "Experience with professional audio middleware (Wwise) integration, building custom C# wrapper systems."
     },
     {
@@ -179,6 +184,7 @@ export const gamesData = [
         technicalImages: [
             { caption: "FMOD Event Structure", src: "" }
         ],
+        showTechnical: false,
         uniqueValue: "VR spatial audio expertise with FMOD middleware and binaural rendering plugins."
     }
 ];
@@ -211,6 +217,7 @@ export const personalData = [
             { caption: "Wwise Music Switch Container", src: "" },
             { caption: "C# Music State Manager", src: "" }
         ],
+        showTechnical: false,
         uniqueValue: "Implemented end-to-end game development including gameplay mechanics and audio implementation.",
         soundcloudHeight: 166
     },
@@ -241,6 +248,7 @@ export const personalData = [
             { caption: "MetaSounds Graph", src: "" },
             { caption: "C++ Custom Node Code", src: "" }
         ],
+        showTechnical: false,
         uniqueValue: "Built complete gameplay systems in C++ and Blueprints including enemy AI behavior and weapon mechanics.",
         soundcloudHeight: 166
     },
@@ -266,6 +274,7 @@ export const personalData = [
         technicalImages: [
             { caption: "Wwise RTPC Curve", src: "" }
         ],
+        showTechnical: false,
         uniqueValue: "Migrated legacy Unity 4 project to Unity 2022 with modern C# architecture and Wwise integration.",
         soundcloudHeight: 166
     },
@@ -288,6 +297,7 @@ export const personalData = [
             { type: "itch", title: "", src: "https://itch.io/embed/286289?dark=true" }
         ],
         technicalImages: [],
+        showTechnical: false,
         uniqueValue: "Demonstrated vertical resequencing as a complementary technique to horizontal resequencing.",
         soundcloudHeight: 166
     },
@@ -316,6 +326,7 @@ export const personalData = [
         technicalImages: [
             { caption: "Object Pooling Script", src: "" }
         ],
+        showTechnical: false,
         uniqueValue: "Built production-ready audio system from scratch without middleware.",
         soundcloudHeight: 166
     }
