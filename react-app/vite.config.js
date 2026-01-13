@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   base: './', // Use relative paths for assets
   build: {
-    outDir: '../dist',
+    outDir: '../docs',
     emptyOutDir: true, // Safe to empty the dist directory
   },
 })
