@@ -10,7 +10,7 @@ const About = () => {
                 {/* About Section Content */}
                 <Row>
                     <Col lg={4} className="ml-auto">
-                        <img className="img-fluid profile-image" src="/assets/img/FotoPromoRaul-min.JPG" style={{ width: '300px' }} alt="Raul Ibarra Aranda" />
+                        <img className="img-fluid profile-image" src="./assets/img/FotoPromoRaul-min.JPG" style={{ width: '300px' }} alt="Raul Ibarra Aranda" />
                         <hr style={{ backgroundColor: 'aliceblue' }} />
                         <div style={{ paddingTop: '1vh' }}>
                             <h5>Quick Contact Info:</h5>
