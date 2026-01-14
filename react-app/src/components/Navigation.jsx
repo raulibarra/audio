@@ -5,6 +5,7 @@ import { FaBars } from 'react-icons/fa';
 
 const Navigation = () => {
     const [scrolled, setScrolled] = useState(false);
+    const [expanded, setExpanded] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -25,11 +26,13 @@ const Navigation = () => {
         <Navbar
             expand="lg"
             fixed="top"
+            expanded={expanded}
+            onToggle={() => setExpanded(!expanded)}
             className={`text-uppercase ${scrolled ? 'glass-panel py-2' : 'py-4'}`}
             style={{
                 transition: 'all 0.3s ease',
-                backgroundColor: scrolled ? 'rgba(5, 5, 5, 0.8)' : 'transparent',
-                borderBottom: scrolled ? '1px solid rgba(255,255,255,0.05)' : 'none'
+                backgroundColor: (scrolled || expanded) ? 'rgba(5, 5, 5, 0.95)' : 'transparent',
+                borderBottom: (scrolled || expanded) ? '1px solid rgba(255,255,255,0.05)' : 'none'
             }}
             id="mainNav"
         >
@@ -46,6 +49,7 @@ const Navigation = () => {
                         fontFamily: 'var(--font-heading)',
                         letterSpacing: '0.05em'
                     }}
+                    onClick={() => setExpanded(false)}
                 >
                     Game Audio Portfolio
                 </Navbar.Brand>
@@ -53,6 +57,7 @@ const Navigation = () => {
                     aria-controls="navbarResponsive"
                     className="navbar-toggler-right font-weight-bold text-white rounded"
                     style={{ background: 'var(--accent-primary)', border: 'none' }}
+                    onClick={() => setExpanded(expanded ? false : "expanded")}
                 >
                     <FaBars />
                 </Navbar.Toggle>
@@ -69,6 +74,7 @@ const Navigation = () => {
                                 className="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
                                 style={{ cursor: 'pointer', color: 'var(--text-secondary)', fontSize: '0.9rem', fontWeight: '500' }}
                                 href="#about"
+                                onClick={() => setExpanded(false)}
                             >
                                 ABOUT
                             </Link>
@@ -83,7 +89,10 @@ const Navigation = () => {
                                 duration={1000}
                                 className="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
                                 style={{ cursor: 'pointer', color: 'var(--text-secondary)', fontSize: '0.9rem', fontWeight: '500' }}
-                                onClick={() => window.dispatchEvent(new CustomEvent('togglePortfolio', { detail: 'games-portfolio' }))}
+                                onClick={() => {
+                                    window.dispatchEvent(new CustomEvent('togglePortfolio', { detail: 'games-portfolio' }));
+                                    setExpanded(false);
+                                }}
                                 href="#portfolio"
                             >
                                 FEATURED PROJECTS
@@ -99,7 +108,10 @@ const Navigation = () => {
                                 duration={1000}
                                 className="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
                                 style={{ cursor: 'pointer', color: 'var(--text-secondary)', fontSize: '0.9rem', fontWeight: '500' }}
-                                onClick={() => window.dispatchEvent(new CustomEvent('togglePortfolio', { detail: 'projects-portfolio' }))}
+                                onClick={() => {
+                                    window.dispatchEvent(new CustomEvent('togglePortfolio', { detail: 'projects-portfolio' }));
+                                    setExpanded(false);
+                                }}
                                 href="#portfolio"
                             >
                                 TECHNICAL SHOWCASES
@@ -116,6 +128,7 @@ const Navigation = () => {
                                 className="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
                                 style={{ cursor: 'pointer', color: 'var(--text-secondary)', fontSize: '0.9rem', fontWeight: '500' }}
                                 href="#contact"
+                                onClick={() => setExpanded(false)}
                             >
                                 CONTACT
                             </Link>

@@ -27,7 +27,7 @@ function App() {
 
       {/* Scroll to Top Button (Only visible on small and extra-small screen sizes) */}
       <div className="scroll-to-top d-lg-none position-fixed" onClick={scrollToTop} style={{ bottom: '20px', right: '20px', zIndex: 1000 }}>
-        <a className="js-scroll-trigger d-block text-center text-white rounded" href="#page-top" style={{ background: 'var(--accent-primary)', width: '50px', height: '50px', lineHeight: '50px' }}>
+        <a className="js-scroll-trigger d-block text-center text-white rounded" href="#page-top" style={{ background: 'rgba(5, 5, 5, 0.8)', border: '1px solid var(--accent-primary)', width: '50px', height: '50px', lineHeight: '50px' }}>
           <FaChevronUp />
         </a>
       </div>
