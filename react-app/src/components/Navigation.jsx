@@ -18,6 +18,7 @@ const Navigation = () => {
         };
 
         window.addEventListener('scroll', handleScroll);
+
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
@@ -69,14 +70,12 @@ const Navigation = () => {
                     <Nav as="ul" className="ms-auto navbar-nav">
                         <li className="nav-item mx-0 mx-lg-1">
                             <Link
-                                activeClass="active"
                                 to="about"
-                                spy={true}
                                 smooth={true}
                                 offset={-70}
                                 duration={1000}
                                 className="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-                                style={{ cursor: 'pointer', color: 'var(--text-secondary)', fontSize: '0.9rem', fontWeight: '500' }}
+                                style={{ cursor: 'pointer', fontSize: '0.9rem', fontWeight: '500' }}
                                 href="#about"
                                 onClick={() => {
                                     ProceduralAudio.playClick();
@@ -88,14 +87,12 @@ const Navigation = () => {
                         </li>
                         <li className="nav-item mx-0 mx-lg-1">
                             <Link
-                                activeClass="active"
                                 to="portfolio"
-                                spy={true}
                                 smooth={true}
                                 offset={-70}
                                 duration={1000}
                                 className="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-                                style={{ cursor: 'pointer', color: 'var(--text-secondary)', fontSize: '0.9rem', fontWeight: '500' }}
+                                style={{ cursor: 'pointer', fontSize: '0.9rem', fontWeight: '500' }}
                                 onClick={() => {
                                     ProceduralAudio.playClick();
                                     window.dispatchEvent(new CustomEvent('togglePortfolio', { detail: 'games-portfolio' }));
@@ -108,14 +105,12 @@ const Navigation = () => {
                         </li>
                         <li className="nav-item mx-0 mx-lg-1">
                             <Link
-                                activeClass="active"
                                 to="portfolio"
-                                spy={true}
                                 smooth={true}
                                 offset={-70}
                                 duration={1000}
                                 className="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-                                style={{ cursor: 'pointer', color: 'var(--text-secondary)', fontSize: '0.9rem', fontWeight: '500' }}
+                                style={{ cursor: 'pointer', fontSize: '0.9rem', fontWeight: '500' }}
                                 onClick={() => {
                                     ProceduralAudio.playClick();
                                     window.dispatchEvent(new CustomEvent('togglePortfolio', { detail: 'projects-portfolio' }));
@@ -128,14 +123,12 @@ const Navigation = () => {
                         </li>
                         <li className="nav-item mx-0 mx-lg-1">
                             <Link
-                                activeClass="active"
                                 to="contact"
-                                spy={true}
                                 smooth={true}
                                 offset={-70}
                                 duration={1000}
                                 className="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-                                style={{ cursor: 'pointer', color: 'var(--text-secondary)', fontSize: '0.9rem', fontWeight: '500' }}
+                                style={{ cursor: 'pointer', fontSize: '0.9rem', fontWeight: '500' }}
                                 href="#contact"
                                 onClick={() => {
                                     ProceduralAudio.playClick();
