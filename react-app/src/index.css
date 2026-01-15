@@ -148,8 +148,6 @@ a:hover {
 
 .bg-premium-gradient {
   background: linear-gradient(180deg, var(--bg-primary) 0%, #0a0a12 100%);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 /* Navigation Link Styles */

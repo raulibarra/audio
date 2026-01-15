@@ -296,6 +296,16 @@ const Header = () => {
                         </Col>
                     </Row>
                 </Container>
+                <div style={{
+                    position: 'absolute',
+                    bottom: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '150px',
+                    background: 'linear-gradient(to bottom, transparent, #050505)',
+                    zIndex: 3,
+                    pointerEvents: 'none'
+                }}></div>
             </header>
         </>
     );
