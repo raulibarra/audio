@@ -4,6 +4,7 @@ import { FaStar, FaGamepad, FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 import PortfolioItem from './PortfolioItem';
 import { gamesData, personalData } from '../data/portfolioData';
 import { scroller } from 'react-scroll';
+import ProceduralAudio from '../utils/ProceduralAudio';
 
 const Portfolio = () => {
     const [activeTab, setActiveTab] = useState('games-portfolio');
@@ -26,6 +27,7 @@ const Portfolio = () => {
     }, []);
 
     const toggleTab = (tab) => {
+        ProceduralAudio.playClick();
         setActiveTab(tab);
         scroller.scrollTo('portfolio', {
             duration: 1000,

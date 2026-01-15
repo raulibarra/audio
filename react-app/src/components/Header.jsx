@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import SineWave from './SineWave';
+import audioSynth from '../utils/ProceduralAudio';
 
 const Header = () => {
     const texts = [
@@ -13,33 +14,56 @@ const Header = () => {
     const [index, setIndex] = useState(0);
     const [opacity, setOpacity] = useState(1);
     const [isOpen, setIsOpen] = useState(false);
-    const [duration, setDuration] = useState(2.5);
+    const [lockDuration, setLockDuration] = useState(0.5);
+    const [doorDuration, setDoorDuration] = useState(1.5);
     const [lockRotation, setLockRotation] = useState(0);
     const [lockScale, setLockScale] = useState(1);
+    const [started, setStarted] = useState(false);
 
-    // Audio helper
-    const playAudio = (path) => {
-        try {
-            const audio = new Audio(path);
-            audio.volume = 0.5;
-            audio.play().catch(e => console.log("Audio play failed (autoplay policy):", e));
-        } catch (e) {
-            console.error("Audio error:", e);
-        }
+    const handleStart = async () => {
+        if (started) return;
+        setStarted(true);
+
+        // Ensure we're at the top of the page
+        window.scrollTo(0, 0);
+
+        // Initialize Audio Context immediately on user gesture and wait for sounds to load
+        await audioSynth.init();
+        try { await audioSynth.playSound("click"); } catch (e) { console.warn(e); }
+
+        // Animation Sequence
+
+        // Initial delay
+        await new Promise(r => setTimeout(r, 25));
+
+        // Phase 1: Lock Turn
+        try { await audioSynth.playLockSequence(); } catch (e) { console.warn(e); }
+        setLockRotation(180); // Spin 180 degrees
+
+        // Wait for lock animation to complete
+        await new Promise(r => setTimeout(r, lockDuration * 1000));
+
+        // Phase 2: Unlock and Open
+        try { await audioSynth.playDoorOpen(); } catch (e) { console.warn(e); }
+        setLockScale(0); // Shrink lock
+        setIsOpen(true); // Open doors
     };
 
     useEffect(() => {
-        const calculateDuration = () => {
-            // Distance = half the width. Speed approx 500px/s seems good.
-            const width = window.innerWidth / 2;
-            const speed = 500;
-            const calculated = width / speed;
-            setDuration(Math.max(0.5, calculated));
+        // Initialize audio and calculate durations
+        const initAudio = async () => {
+            await audioSynth.init();
+
+            // Lock duration: Fixed hardcoded value
+            setLockDuration(0.5);
+
+            // Door duration: Fixed hardcoded value
+            setDoorDuration(0.6);
         };
 
-        calculateDuration();
-        window.addEventListener('resize', calculateDuration);
-        return () => window.removeEventListener('resize', calculateDuration);
+        initAudio();
+
+        // No resize listener needed - duration is now fixed
     }, []);
 
     useEffect(() => {
@@ -55,29 +79,6 @@ const Header = () => {
         return () => clearInterval(interval);
     }, []);
 
-    useEffect(() => {
-        // Animation Sequence
-        const sequence = async () => {
-            // Initial delay
-            await new Promise(r => setTimeout(r, 800));
-
-            // Phase 1: Lock Turn
-            // Only play audio if interaction occured? Chrome might block.
-            // We'll try anyway.
-            playAudio('/sounds/lock.mp3');
-            setLockRotation(180); // Spin 180 degrees
-
-            // Wait for spin duration
-            await new Promise(r => setTimeout(r, 800));
-
-            // Phase 2: Unlock and Open
-            playAudio('/sounds/door_open.mp3');
-            setLockScale(0); // Shrink lock
-            setIsOpen(true); // Open doors
-        };
-
-        sequence();
-    }, []);
 
     const doorStyle = {
         position: 'relative',
@@ -109,17 +110,20 @@ const Header = () => {
     return (
         <>
             {/* Doors Overlay */}
-            <div style={{
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100vh',
-                zIndex: 9998,
-                pointerEvents: 'none',
-                display: 'flex',
-                perspective: '1000px'
-            }}>
+            <div
+                onClick={handleStart}
+                style={{
+                    position: 'fixed',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100vh',
+                    zIndex: 9998,
+                    pointerEvents: isOpen ? 'none' : 'auto',
+                    cursor: started ? 'default' : 'pointer',
+                    display: 'flex',
+                    perspective: '1000px'
+                }}>
                 {/* Lock Mechanism - Centered */}
                 <div style={{
                     position: 'absolute',
@@ -129,11 +133,31 @@ const Header = () => {
                     width: '300px',
                     height: '300px',
                     zIndex: 10,
-                    transition: 'transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55), width 0.3s, height 0.3s', // Bouncy spin, smooth scale
+                    transition: `transform ${lockDuration}s cubic-bezier(0.68, -0.55, 0.265, 1.55)`, // Lock rotation uses lockDuration
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: 'center'
+                    justifyContent: 'center',
+                    flexDirection: 'column'
                 }}>
+                    {/* Prompt Text */}
+                    <div style={{
+                        position: 'absolute',
+                        bottom: '-60px',
+                        color: 'rgba(0, 243, 255, 0.8)',
+                        fontFamily: 'monospace',
+                        letterSpacing: '2px',
+                        fontSize: '0.9rem',
+                        opacity: started ? 0 : 1,
+                        transition: 'opacity 0.3s',
+                        whiteSpace: 'nowrap',
+                        textShadow: '0 0 10px rgba(0, 243, 255, 0.5)',
+                        padding: '0 20px',
+                        textAlign: 'center',
+                        width: '100vw' // Ensure full width for centering on mobile
+                    }}>
+                        SYSTEM STANDBY // CLICK TO INITIALIZE
+                    </div>
+
                     {/* Outer Ring */}
                     <div style={{
                         position: 'absolute',
@@ -143,7 +167,7 @@ const Header = () => {
                         border: '2px solid rgba(0, 243, 255, 0.3)',
                         borderTopColor: 'rgba(0, 243, 255, 0.8)',
                         borderBottomColor: 'rgba(0, 243, 255, 0.8)',
-                        animation: 'none' // Controlled by parent rotation
+                        animation: started ? 'none' : 'spin-slow 20s linear infinite'
                     }}></div>
 
                     {/* Inner Ring */}
@@ -153,8 +177,9 @@ const Header = () => {
                         height: '70%',
                         borderRadius: '50%',
                         border: '4px dashed rgba(0, 243, 255, 0.5)',
-                        transform: `rotate(-${lockRotation * 2}deg)`, // Counter-rotate relative to parent
-                        transition: 'transform 0.8s ease'
+                        transform: `rotate(-${lockRotation * 2}deg)`, // Counter-rotate relative to parent during event
+                        transition: 'transform 0.8s ease',
+                        animation: started ? 'none' : 'spin-reverse-slow 15s linear infinite'
                     }}></div>
 
                     {/* Center Core */}
@@ -172,7 +197,7 @@ const Header = () => {
                 <div style={{
                     ...doorStyle,
                     transform: isOpen ? 'translateX(-100%) rotateY(-15deg)' : 'translateX(0) rotateY(0deg)',
-                    transition: `transform ${duration}s cubic-bezier(0.19, 1, 0.22, 1)`,
+                    transition: `transform ${doorDuration}s cubic-bezier(0.7, 0, 0.84, 0)`,
                     borderRight: '2px solid rgba(0, 243, 255, 0.5)',
                     boxShadow: 'inset -10px 0 50px rgba(0,0,0,0.8)',
                     justifyContent: 'flex-end',
@@ -192,7 +217,7 @@ const Header = () => {
                 <div style={{
                     ...doorStyle,
                     transform: isOpen ? 'translateX(100%) rotateY(15deg)' : 'translateX(0) rotateY(0deg)',
-                    transition: `transform ${duration}s cubic-bezier(0.19, 1, 0.22, 1)`,
+                    transition: `transform ${doorDuration}s cubic-bezier(0.7, 0, 0.84, 0)`,
                     borderLeft: '2px solid rgba(0, 243, 255, 0.5)',
                     boxShadow: 'inset 10px 0 50px rgba(0,0,0,0.8)',
                     justifyContent: 'flex-start'

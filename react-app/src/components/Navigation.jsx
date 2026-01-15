@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-scroll';
 import { Navbar, Nav } from 'react-bootstrap';
 import { FaBars } from 'react-icons/fa';
+import ProceduralAudio from '../utils/ProceduralAudio';
 
 const Navigation = () => {
     const [scrolled, setScrolled] = useState(false);
@@ -49,7 +50,10 @@ const Navigation = () => {
                         fontFamily: 'var(--font-heading)',
                         letterSpacing: '0.05em'
                     }}
-                    onClick={() => setExpanded(false)}
+                    onClick={() => {
+                        ProceduralAudio.playClick();
+                        setExpanded(false);
+                    }}
                 >
                     Game Audio Portfolio
                 </Navbar.Brand>
@@ -74,7 +78,10 @@ const Navigation = () => {
                                 className="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
                                 style={{ cursor: 'pointer', color: 'var(--text-secondary)', fontSize: '0.9rem', fontWeight: '500' }}
                                 href="#about"
-                                onClick={() => setExpanded(false)}
+                                onClick={() => {
+                                    ProceduralAudio.playClick();
+                                    setExpanded(false);
+                                }}
                             >
                                 ABOUT
                             </Link>
@@ -90,6 +97,7 @@ const Navigation = () => {
                                 className="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
                                 style={{ cursor: 'pointer', color: 'var(--text-secondary)', fontSize: '0.9rem', fontWeight: '500' }}
                                 onClick={() => {
+                                    ProceduralAudio.playClick();
                                     window.dispatchEvent(new CustomEvent('togglePortfolio', { detail: 'games-portfolio' }));
                                     setExpanded(false);
                                 }}
@@ -109,6 +117,7 @@ const Navigation = () => {
                                 className="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
                                 style={{ cursor: 'pointer', color: 'var(--text-secondary)', fontSize: '0.9rem', fontWeight: '500' }}
                                 onClick={() => {
+                                    ProceduralAudio.playClick();
                                     window.dispatchEvent(new CustomEvent('togglePortfolio', { detail: 'projects-portfolio' }));
                                     setExpanded(false);
                                 }}
@@ -128,7 +137,10 @@ const Navigation = () => {
                                 className="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
                                 style={{ cursor: 'pointer', color: 'var(--text-secondary)', fontSize: '0.9rem', fontWeight: '500' }}
                                 href="#contact"
-                                onClick={() => setExpanded(false)}
+                                onClick={() => {
+                                    ProceduralAudio.playClick();
+                                    setExpanded(false);
+                                }}
                             >
                                 CONTACT
                             </Link>

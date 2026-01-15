@@ -7,8 +7,40 @@ import Footer from './components/Footer';
 import { FaChevronUp } from 'react-icons/fa';
 import { animateScroll as scroll } from 'react-scroll';
 
+import { useEffect } from 'react';
+import ProceduralAudio from './utils/ProceduralAudio';
+
 function App() {
   console.log('Rendering App component');
+
+  useEffect(() => {
+    const handleGlobalClick = (e) => {
+      // Traverse up to find if we clicked a button or interactive element
+      let target = e.target;
+      while (target && target !== document.body) {
+        if (
+          target.tagName === 'BUTTON' ||
+          target.tagName === 'A' ||
+          target.getAttribute('role') === 'button' ||
+          target.getAttribute('role') === 'link' ||
+          target.type === 'submit' ||
+          target.classList.contains('btn') // Common button class
+        ) {
+          ProceduralAudio.playClick();
+          break;
+        }
+        target = target.parentElement;
+      }
+    };
+
+    window.addEventListener('click', handleGlobalClick);
+    return () => window.removeEventListener('click', handleGlobalClick);
+  }, []);
+
+  // Always scroll to top on page load/reload
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const scrollToTop = () => {
     scroll.scrollToTop();
   };
