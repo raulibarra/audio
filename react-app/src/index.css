@@ -1,5 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700&display=swap');
 
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-reverse-slow {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
 :root {
   /* Cyber/Tech Palette */
   --bg-primary: #050505;
@@ -128,6 +148,45 @@ a:hover {
 
 .bg-premium-gradient {
   background: linear-gradient(180deg, var(--bg-primary) 0%, #0a0a12 100%);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Navigation Link Styles */
+/* Navigation Link Styles */
+.nav-link,
+.nav-link:visited,
+.nav-link:focus {
+  position: relative;
+  transition: all var(--transition-medium);
+  color: var(--text-secondary) !important;
+  outline: none;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 80%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+  transition: transform var(--transition-medium), opacity var(--transition-medium);
+  opacity: 0;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--accent-primary) !important;
+  text-shadow: 0 0 8px rgba(0, 243, 255, 0.3);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: translateX(-50%) scaleX(1);
+  opacity: 0.6;
+}
+
+.nav-link:active {
+  transform: scale(0.95);
+  color: var(--accent-primary) !important;
 }

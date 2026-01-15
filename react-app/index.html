@@ -13,8 +13,17 @@
     content="Technical Sound Designer & Audio Programmer specializing in Wwise, FMOD, Unreal Engine 5, and Unity. Expert in game audio implementation and interactive systems." />
   <meta property="og:image" content="https://raulibarra.audio/assets/img/FotoPromoRaul-min.JPG" />
   <meta property="og:type" content="website" />
+</head>
 
 <body>
+  <script>
+    // Prevent browser from restoring scroll position on reload
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    // Force scroll to top immediately
+    window.scrollTo(0, 0);
+  </script>
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
 </body>
