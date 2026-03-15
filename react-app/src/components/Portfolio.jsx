@@ -48,8 +48,8 @@ const Portfolio = () => {
                     <p style={{ paddingTop: '10px' }}>
                         <i>
                             {activeTab === 'games-portfolio'
-                                ? "Here’s a selection of professional projects where I contributed to audio programming, music and sound design for games and interactive media."
-                                : "Technical demonstrations of audio programming systems, middleware integration, and interactive music implementation."}
+                                ? "Here's a selection of professional projects where I contributed to technical sound design, audio programming and music composition for games and interactive media."
+                                : "Technical demonstrations of sound design, audio programming, music composition, including middleware integration, and interactive music implementation."}
                         </i>
                     </p>
                 </div>

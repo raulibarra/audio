@@ -28,8 +28,8 @@ export const gamesData = [
             { type: "youtube", title: "🎮 Demo Reel", src: "https://www.youtube.com/embed/SmWhDKrFvuw?si=r2JMQvpTMuH3rxCe" }
         ],
         technicalImages: [
-            { caption: "Custom Audio Manager Script (C#)", src: "" },
-            { caption: "Unity Audio Mixer Routing", src: "" }
+            { caption: "Custom Audio Manager Script (C#)", src: "", description: "Architecture: A bespoke C# singleton managing all game audio via object pooling.\n\nOptimization: Eliminates runtime allocations and GC spikes — critical for WebGL memory budgets.\n\nIntegration: Uses Unity's Audio Mixer for real-time ducking and Addressables for async asset loading." },
+            { caption: "Unity Audio Mixer Routing", src: "", description: "Topology: Grouped buses for SFX, Music, and UI with dedicated Send/Receive effects.\n\nAutomation: Snapshot transitions handle combat vs. exploration mixing dynamically without additional code.\n\nFlow: Ensures proper hierarchical ducking and consistent loudness across the WebGL build." }
         ],
         showTechnical: false,
         uniqueValue: "Dual audio + gameplay expertise eliminates programmer dependency and accelerates development."
@@ -59,7 +59,7 @@ export const gamesData = [
             { type: "youtube", title: "🎮 Demo Reel", src: "https://www.youtube.com/embed/QYcHgdB5_II?si=Lez81MG7jLr5olPp" }
         ],
         technicalImages: [
-            { caption: "Impact System Matrix (Scriptable Object)", src: "" }
+            { caption: "Impact System Matrix (Scriptable Object)", src: "", description: "Logic: A data-driven Scriptable Object matrix that selects SFX based on [Attacker Weapon] vs. [Defender Material].\n\nWorkflow: Swapping combat audio requires zero code changes — designers modify the matrix directly.\n\nFlexibility: Decouples asset management from combat systems, allowing rapid iteration on hit feedback." }
         ],
         showTechnical: false,
         uniqueValue: "Combined audio design with gameplay programming to build intelligent audio systems that respond to game state without requiring middleware."
@@ -93,8 +93,8 @@ export const gamesData = [
             { type: "youtube", title: "🎮 Demo Reel", src: "https://www.youtube.com/embed/8hthPXT1RqQ?si=65hZx-UtYXBarp9o" }
         ],
         technicalImages: [
-            { caption: "Wwise Project Hierarchy", src: "" },
-            { caption: "Dolby Atmos Profiler", src: "" }
+            { caption: "Wwise Project Hierarchy", src: "", description: "Structure: Event hierarchy organizing spatial audio assets by gameplay scenario (corridor, arena, interior).\n\nEfficiency: Optimized for rapid context switching via C# game state triggers.\n\nManagement: Centralized control for distance attenuation and object-based priorities." },
+            { caption: "Dolby Atmos Profiler", src: "", description: "Binaural: Real-time tracking of object-based audio positioning in 3D space.\n\nTechnology: True height channel rendering via the Wwise Dolby plugin on mobile hardware.\n\nPrecision: Ensures accurate spatialization for competitive FPS gameplay cues." }
         ],
         showTechnical: false,
         uniqueValue: "Expertise in spatial audio middleware (Wwise, Dolby Atmos) combined with gameplay programming enables end-to-end feature ownership."
@@ -124,7 +124,7 @@ export const gamesData = [
             { type: "youtube", title: "🎮 Demo Reel", src: "https://www.youtube.com/embed/dKC6MHtdR4A?si=_TwJT1UQw7Vf8_4_" }
         ],
         technicalImages: [
-            { caption: "Custom Music System Inspector", src: "" }
+            { caption: "Custom Music System Inspector", src: "", description: "Inspector: Custom Unity Editor tool exposing beat-sync settings, cue points, and reverb tail parameters.\n\nLogic: Horizontal resequencing handled by the C# runtime with sample-accurate scheduling.\n\nIndependence: Implements complex interactive music features without requiring external middleware." }
         ],
         showTechnical: false,
         uniqueValue: "Built custom interactive music system from scratch without middleware, demonstrating deep Unity audio architecture knowledge."
@@ -153,7 +153,7 @@ export const gamesData = [
             { type: "youtube", title: "🎮 Demo Reel", src: "https://www.youtube.com/embed/BUwxfJFIewI?si=v384wWca_Bz2HLj0" }
         ],
         technicalImages: [
-            { caption: "Wwise Profiler Session", src: "" }
+            { caption: "Wwise Profiler Session", src: "", description: "Profiling: Live capture showing active voices and RTPC curves driving real-time pitch/volume.\n\nLogic: Switch Containers toggle between weapon types based on game state.\n\nBudgeting: Priority management and virtual voicing ensure stable performance within mobile constraints." }
         ],
         showTechnical: false,
         uniqueValue: "Experience with professional audio middleware (Wwise) integration, building custom C# wrapper systems."
@@ -182,7 +182,7 @@ export const gamesData = [
             { type: "youtube", title: "🎮 Experience Footage", src: "https://www.youtube.com/embed/DCFdkyu7sNY?si=UUikNP8wdrWMnUK0" }
         ],
         technicalImages: [
-            { caption: "FMOD Event Structure", src: "" }
+            { caption: "FMOD Event Structure", src: "", description: "Binaural: Event hierarchy utilizing Google Resonance Audio spatialization for room-scale VR.\n\nSpatialization: Distance attenuation and occlusion curves tuned for Sandbox VR's physical dimensions.\n\nImmersion: Low-latency 3D audio rendering critical for maintaining presence in VR environments." }
         ],
         showTechnical: false,
         uniqueValue: "VR spatial audio expertise with FMOD middleware and binaural rendering plugins."
@@ -196,6 +196,7 @@ export const personalData = [
         subtitle: "Adaptive Music System & Biome-Based Spatial Audio",
         description: "Technical showcase demonstrating state-driven music systems, spatial audio optimization, and modular sound design architecture.",
         techStack: ["Unity", "Wwise", "C#", "Google Resonance"],
+        repoUrl: "https://gitlab.com/raul-ibarra-featured-projects/echoes-of-the-forgoten-isle-audio-demo",
         metadata: [
             { label: "Role", value: "Full Stack Game Dev & Audio" },
             { label: "Audio Tech", value: "Wwise + Custom C# Systems" }
@@ -214,10 +215,28 @@ export const personalData = [
             { type: "itch", title: "", src: "https://itch.io/embed/3710091?dark=true" }
         ],
         technicalImages: [
-            { caption: "Wwise Music Switch Container", src: "" },
-            { caption: "C# Music State Manager", src: "" }
+            {
+                caption: "Wwise Music Container",
+                src: "./assets/img/projects/efi_wwise_interactive_music_main.jpg",
+                description: "Adaptive music system using horizontal resequencing for Exploration, Combat, and Boss states.\nLogic: A triple-RTPC setup (Time, Enemies, Proximity) shifts day/night palettes, scales combat tension, and layers tracks as players approach the goal."
+            },
+            {
+                caption: "Wwise SFX Main View",
+                src: "./assets/img/projects/efi_wwise_interactive_sfxs_main.jpg",
+                description: "Switch-driven SFX architecture for weapons, impact reactions, and foley.\nLogic: Dual-switch systems for footsteps (Character + Material) and hit reactions (Weapon + Character) ensure context-aware audio for every interaction."
+            },
+            {
+                caption: "Dynamic Ambience Controller",
+                src: "./assets/img/projects/efi_wwise_interactive_ambience_river_spline.jpg",
+                description: "Spline-based system simulating large ambient areas by tracking the player with a single movable emitter.\nBenefit: Eliminates CPU overhead and volume fluctuations of multiple static emitters. Ideal for rivers and shorelines."
+            },
+            {
+                caption: "C# Enemies Count RTPC Controller",
+                src: "./assets/img/projects/efi_wwise_enemy_count_rtpc_controller.jpg",
+                description: "Maps enemy count to Wwise RTPCs to automate intensity shifts.\nThresholds: None (idle), Combat (1+ enemies), and Last Stand (5+ enemies) layering to scale musical tension with combat density."
+            },
         ],
-        showTechnical: false,
+        showTechnical: true,
         uniqueValue: "Implemented end-to-end game development including gameplay mechanics and audio implementation.",
         soundcloudHeight: 166
     },
@@ -245,8 +264,8 @@ export const personalData = [
             { type: "itch", title: "", src: "https://itch.io/embed/1784074?dark=true" }
         ],
         technicalImages: [
-            { caption: "MetaSounds Graph", src: "" },
-            { caption: "C++ Custom Node Code", src: "" }
+            { caption: "MetaSounds Graph", src: "", description: "Architecture: MetaSounds graph for horizontal resequencing using custom C++ nodes for tempo-sync.\n\nLogic: Trigger buses connect to Blueprint variables for seamless adaptive music transitions.\n\nBenefits: Achieves middleware-level interactivity natively within the Unreal Engine pipeline." },
+            { caption: "C++ Custom Node Code", src: "", description: "Development: Custom MetaSound nodes in C++ for specialized logic missing from the native API.\n\nFunctionality: Implements a sophisticated random container with procedural pitch and volume offsets.\n\nIntegration: Registered as MetaSounds plugins, making them reusable across any UE5 project." }
         ],
         showTechnical: false,
         uniqueValue: "Built complete gameplay systems in C++ and Blueprints including enemy AI behavior and weapon mechanics.",
@@ -272,7 +291,7 @@ export const personalData = [
             { type: "itch", title: "", src: "https://itch.io/embed/307450?dark=true" }
         ],
         technicalImages: [
-            { caption: "Wwise RTPC Curve", src: "" }
+            { caption: "Wwise RTPC Curve", src: "", description: "RTPC: Data-driven curve mapping enemy kill count to music intensity.\n\nBlending: Smooth interpolation of secondary music layers based on player performance.\n\nDesign: Allows designers to tune the 'feel' of music escalation without changing a single line of code." }
         ],
         showTechnical: false,
         uniqueValue: "Migrated legacy Unity 4 project to Unity 2022 with modern C# architecture and Wwise integration.",
@@ -324,7 +343,7 @@ export const personalData = [
             { type: "itch", title: "", src: "https://itch.io/embed/577853?dark=true" }
         ],
         technicalImages: [
-            { caption: "Object Pooling Script", src: "" }
+            { caption: "Object Pooling Script", src: "", description: "System: Custom C# AudioSource pool that pre-warms components at startup.\n\nOptimization: Eliminates mid-gameplay allocations and GC spikes during intense combat.\n\nIntelligence: A priority-based recycling algorithm ensures critical SFX are never dropped." }
         ],
         showTechnical: false,
         uniqueValue: "Built production-ready audio system from scratch without middleware.",

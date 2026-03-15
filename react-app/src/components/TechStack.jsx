@@ -10,7 +10,8 @@ import {
 const TechStack = () => {
     return (
         <div className="tech-stack-section mt-5">
-            <h3 className="text-center mb-5" style={{ fontFamily: 'var(--font-heading)', letterSpacing: '0.1em' }}>TECHNICAL ARSENAL</h3>
+            <h3 className="text-center mb-1" style={{ fontFamily: 'var(--font-heading)', letterSpacing: '0.1em' }}>TECHNICAL ARSENAL</h3>
+            <p className="text-center mb-5" style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', letterSpacing: '0.1em', textTransform: 'uppercase', opacity: 0.5 }}>In Detail</p>
             <Row>
                 {/* Audio Programming */}
                 <Col lg={3} md={6} className="mb-4">
@@ -19,6 +20,7 @@ const TechStack = () => {
                         border: '1px solid rgba(255, 255, 255, 0.05)',
                         transition: 'transform 0.3s ease'
                     }}>
+                        <span style={{ display: 'inline-block', fontSize: '0.65rem', letterSpacing: '0.12em', color: 'var(--accent-primary)', textTransform: 'uppercase', marginBottom: '0.4rem', opacity: 0.7 }}>MY CRAFT</span>
                         <h5 className="mb-4" style={{ color: 'var(--accent-primary)', textTransform: 'uppercase', fontSize: '0.9rem', letterSpacing: '0.05em' }}>
                             Audio Programming
                         </h5>
@@ -54,6 +56,7 @@ const TechStack = () => {
                         background: 'rgba(255, 255, 255, 0.03)',
                         border: '1px solid rgba(255, 255, 255, 0.05)'
                     }}>
+                        <span style={{ display: 'inline-block', fontSize: '0.65rem', letterSpacing: '0.12em', color: 'var(--accent-primary)', textTransform: 'uppercase', marginBottom: '0.4rem', opacity: 0.7 }}>MY CRAFT</span>
                         <h5 className="mb-4" style={{ color: 'var(--accent-primary)', textTransform: 'uppercase', fontSize: '0.9rem', letterSpacing: '0.05em' }}>
                             Middleware & Tools
                         </h5>
@@ -91,6 +94,7 @@ const TechStack = () => {
                         background: 'rgba(255, 255, 255, 0.03)',
                         border: '1px solid rgba(255, 255, 255, 0.05)'
                     }}>
+                        <span style={{ display: 'inline-block', fontSize: '0.65rem', letterSpacing: '0.12em', color: 'var(--accent-primary)', textTransform: 'uppercase', marginBottom: '0.4rem', opacity: 0.7 }}>MY CRAFT</span>
                         <h5 className="mb-4" style={{ color: 'var(--accent-primary)', textTransform: 'uppercase', fontSize: '0.9rem', letterSpacing: '0.05em' }}>
                             Sound Design & Music
                         </h5>
@@ -129,6 +133,7 @@ const TechStack = () => {
                         background: 'rgba(255, 255, 255, 0.03)',
                         border: '1px solid rgba(255, 255, 255, 0.05)'
                     }}>
+                        <span style={{ display: 'inline-block', fontSize: '0.65rem', letterSpacing: '0.12em', color: '#7000ff', textTransform: 'uppercase', marginBottom: '0.4rem', opacity: 0.85 }}>MY EDGE</span>
                         <h5 className="mb-4" style={{ color: 'var(--accent-primary)', textTransform: 'uppercase', fontSize: '0.9rem', letterSpacing: '0.05em' }}>
                             Development & Workflow
                         </h5>

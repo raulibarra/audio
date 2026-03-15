@@ -35,7 +35,7 @@ const Footer = () => {
             {/* Copyright Section */}
             <section className="copyright py-4 text-center text-white">
                 <div className="container">
-                    <small className="pre-wrap">Copyright © Raul Ibarra Aranda 2024</small>
+                    <small className="pre-wrap">Copyright © Raul Ibarra Aranda {new Date().getFullYear()}</small>
                 </div>
             </section>
         </>

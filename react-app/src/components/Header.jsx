@@ -7,9 +7,9 @@ const Header = () => {
     const texts = [
         "Technical Sound Designer",
         "Audio Programmer",
-        "Technical Music Composer",
         "Game Audio Developer",
         "Interactive Audio Specialist",
+        "Technical Music Composer",
     ];
     const [index, setIndex] = useState(0);
     const [opacity, setOpacity] = useState(1);
