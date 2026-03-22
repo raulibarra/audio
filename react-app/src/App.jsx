@@ -39,7 +39,9 @@ function App() {
 
   // Always scroll to top on page load/reload
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if (!window.location.hash) {
+      window.scrollTo(0, 0);
+    }
   }, []);
   const scrollToTop = () => {
     scroll.scrollToTop();

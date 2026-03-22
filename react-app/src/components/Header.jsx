@@ -13,9 +13,12 @@ const Header = () => {
     ];
     const [index, setIndex] = useState(0);
     const [opacity, setOpacity] = useState(1);
+
+    // Animation states
+    const [isOverlayActive, setIsOverlayActive] = useState(!window.location.hash);
     const [isOpen, setIsOpen] = useState(false);
     const [lockDuration, setLockDuration] = useState(0.5);
-    const [doorDuration, setDoorDuration] = useState(1.5);
+    const [doorDuration, setDoorDuration] = useState(0.8);
     const [lockRotation, setLockRotation] = useState(0);
     const [lockScale, setLockScale] = useState(1);
     const [started, setStarted] = useState(false);
@@ -24,50 +27,50 @@ const Header = () => {
         if (started) return;
         setStarted(true);
 
-        // Ensure we're at the top of the page
-        window.scrollTo(0, 0);
+        // Ensure we're at the top of the page if no hash
+        if (!window.location.hash) {
+            window.scrollTo(0, 0);
+        }
 
-        // Initialize Audio Context immediately on user gesture and wait for sounds to load
+        // Initialize Audio Context immediately on user gesture
         await audioSynth.init();
         try { await audioSynth.playSound("click"); } catch (e) { console.warn(e); }
 
-        // Animation Sequence
-
-        // Initial delay
-        await new Promise(r => setTimeout(r, 25));
-
         // Phase 1: Lock Turn
         try { await audioSynth.playLockSequence(); } catch (e) { console.warn(e); }
-        setLockRotation(180); // Spin 180 degrees
+        setLockRotation(180);
 
-        // Wait for lock animation to complete
+        // Wait for lock animation
         await new Promise(r => setTimeout(r, lockDuration * 1000));
 
         // Phase 2: Unlock and Open
         try { await audioSynth.playDoorOpen(); } catch (e) { console.warn(e); }
-        setLockScale(0); // Shrink lock
-        setIsOpen(true); // Open doors
+        setLockScale(0);
+        setIsOpen(true);
     };
 
     useEffect(() => {
-        // Initialize audio and calculate durations
         const initAudio = async () => {
             await audioSynth.init();
-
-            // Lock duration: Fixed hardcoded value
             setLockDuration(0.5);
-
-            // Door duration: Fixed hardcoded value
-            setDoorDuration(0.6);
+            setDoorDuration(0.8);
         };
-
         initAudio();
 
-        // No resize listener needed - duration is now fixed
-    }, []);
+        // Skip animation if a hash is already present or added
+        const checkHash = () => {
+            if (window.location.hash) {
+                setIsOverlayActive(false); // Correctly hide the overlay entirely
+                setStarted(true);
+                setIsOpen(true);
+                setLockScale(0);
+            }
+        };
+        
+        checkHash(); // Run on mount
+        window.addEventListener('hashchange', checkHash);
 
-    useEffect(() => {
-        // Text roatation logic
+        // Text rotation logic
         const interval = setInterval(() => {
             setOpacity(0);
             setTimeout(() => {
@@ -76,8 +79,11 @@ const Header = () => {
             }, 500);
         }, 3000);
 
-        return () => clearInterval(interval);
-    }, []);
+        return () => {
+            clearInterval(interval);
+            window.removeEventListener('hashchange', checkHash);
+        };
+    }, [texts.length]);
 
 
     const doorStyle = {
@@ -86,20 +92,8 @@ const Header = () => {
         height: '100%',
         backgroundColor: '#050505',
         backgroundImage: `
-            repeating-linear-gradient(
-                90deg,
-                transparent 0,
-                transparent 1px,
-                rgba(0, 243, 255, 0.03) 1px,
-                rgba(0, 243, 255, 0.03) 3px
-            ),
-            repeating-linear-gradient(
-                0deg,
-                transparent 0,
-                transparent 1px,
-                rgba(0, 243, 255, 0.03) 1px,
-                rgba(0, 243, 255, 0.03) 3px
-            ),
+            repeating-linear-gradient(90deg, transparent 0, transparent 1px, rgba(0, 243, 255, 0.03) 1px, rgba(0, 243, 255, 0.03) 3px),
+            repeating-linear-gradient(0deg, transparent 0, transparent 1px, rgba(0, 243, 255, 0.03) 1px, rgba(0, 243, 255, 0.03) 3px),
             radial-gradient(circle at 50% 50%, rgba(20,20,20,1) 0%, rgba(5,5,5,1) 100%)
         `,
         zIndex: 2,
@@ -109,131 +103,104 @@ const Header = () => {
 
     return (
         <>
-            {/* Doors Overlay */}
-            <div
-                onClick={handleStart}
-                style={{
-                    position: 'fixed',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100vh',
-                    zIndex: 9998,
-                    pointerEvents: isOpen ? 'none' : 'auto',
-                    cursor: started ? 'default' : 'pointer',
-                    display: 'flex',
-                    perspective: '1000px'
-                }}>
-                {/* Lock Mechanism - Centered */}
-                <div style={{
-                    position: 'absolute',
-                    top: '50%',
-                    left: '50%',
-                    transform: `translate(-50%, -50%) scale(${lockScale}) rotate(${lockRotation}deg)`,
-                    width: '300px',
-                    height: '300px',
-                    zIndex: 10,
-                    transition: `transform ${lockDuration}s cubic-bezier(0.68, -0.55, 0.265, 1.55)`, // Lock rotation uses lockDuration
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flexDirection: 'column'
-                }}>
-                    {/* Prompt Text */}
+            {/* Doors Overlay - Only rendered if no deep link is present */}
+            {isOverlayActive && (
+                <div
+                    onClick={handleStart}
+                    style={{
+                        position: 'fixed',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100vh',
+                        zIndex: 9998,
+                        pointerEvents: isOpen ? 'none' : 'auto',
+                        cursor: started ? 'default' : 'pointer',
+                        display: 'flex',
+                        perspective: '1000px',
+                        opacity: isOpen ? 0 : 1,
+                        transition: `opacity ${doorDuration}s ease ${doorDuration / 2}s`
+                    }}>
+                    
+                    {/* Lock Mechanism */}
                     <div style={{
                         position: 'absolute',
-                        bottom: '-60px',
-                        color: 'rgba(0, 243, 255, 0.8)',
-                        fontFamily: 'monospace',
-                        letterSpacing: '2px',
-                        fontSize: '0.9rem',
-                        opacity: started ? 0 : 1,
-                        transition: 'opacity 0.3s',
-                        whiteSpace: 'nowrap',
-                        textShadow: '0 0 10px rgba(0, 243, 255, 0.5)',
-                        padding: '0 20px',
-                        textAlign: 'center',
-                        width: '100vw' // Ensure full width for centering on mobile
+                        top: '50%',
+                        left: '50%',
+                        transform: `translate(-50%, -50%) scale(${lockScale}) rotate(${lockRotation}deg)`,
+                        width: '300px',
+                        height: '300px',
+                        zIndex: 10,
+                        transition: `transform ${lockDuration}s cubic-bezier(0.68, -0.55, 0.265, 1.55)`,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        flexDirection: 'column'
                     }}>
-                        SYSTEM STANDBY // CLICK TO INITIALIZE
+                        <div style={{
+                            position: 'absolute',
+                            bottom: '-60px',
+                            color: 'rgba(0, 243, 255, 0.8)',
+                            fontFamily: 'monospace',
+                            letterSpacing: '2px',
+                            fontSize: '0.9rem',
+                            opacity: started ? 0 : 1,
+                            transition: 'opacity 0.3s',
+                            whiteSpace: 'nowrap',
+                            textAlign: 'center',
+                            width: '100vw'
+                        }}>
+                            SYSTEM STANDBY // CLICK TO INITIALIZE
+                        </div>
+
+                        <div style={{
+                            position: 'absolute',
+                            width: '100%',
+                            height: '100%',
+                            borderRadius: '50%',
+                            border: '2px solid rgba(0, 243, 255, 0.3)',
+                            borderTopColor: 'rgba(0, 243, 255, 0.8)',
+                            borderBottomColor: 'rgba(0, 243, 255, 0.8)',
+                            animation: started ? 'none' : 'spin-slow 20s linear infinite'
+                        }}></div>
+
+                        <div style={{
+                            position: 'absolute',
+                            width: '70%',
+                            height: '70%',
+                            borderRadius: '50%',
+                            border: '4px dashed rgba(0, 243, 255, 0.5)',
+                            transition: 'transform 0.8s ease',
+                            animation: started ? 'none' : 'spin-reverse-slow 15s linear infinite'
+                        }}></div>
+
+                        <div style={{
+                            position: 'absolute',
+                            width: '20%',
+                            height: '20%',
+                            borderRadius: '50%',
+                            background: 'rgba(0, 243, 255, 0.8)',
+                            boxShadow: '0 0 20px rgba(0, 243, 255, 0.8)'
+                        }}></div>
                     </div>
 
-                    {/* Outer Ring */}
+                    {/* Left Door */}
                     <div style={{
-                        position: 'absolute',
-                        width: '100%',
-                        height: '100%',
-                        borderRadius: '50%',
-                        border: '2px solid rgba(0, 243, 255, 0.3)',
-                        borderTopColor: 'rgba(0, 243, 255, 0.8)',
-                        borderBottomColor: 'rgba(0, 243, 255, 0.8)',
-                        animation: started ? 'none' : 'spin-slow 20s linear infinite'
+                        ...doorStyle,
+                        transform: isOpen ? 'translateX(-100%) rotateY(-15deg)' : 'translateX(0) rotateY(0deg)',
+                        transition: `transform ${doorDuration}s cubic-bezier(0.7, 0, 0.84, 0)`,
+                        borderRight: '2px solid rgba(0, 243, 255, 0.5)',
                     }}></div>
 
-                    {/* Inner Ring */}
+                    {/* Right Door */}
                     <div style={{
-                        position: 'absolute',
-                        width: '70%',
-                        height: '70%',
-                        borderRadius: '50%',
-                        border: '4px dashed rgba(0, 243, 255, 0.5)',
-                        transform: `rotate(-${lockRotation * 2}deg)`, // Counter-rotate relative to parent during event
-                        transition: 'transform 0.8s ease',
-                        animation: started ? 'none' : 'spin-reverse-slow 15s linear infinite'
-                    }}></div>
-
-                    {/* Center Core */}
-                    <div style={{
-                        position: 'absolute',
-                        width: '20%',
-                        height: '20%',
-                        borderRadius: '50%',
-                        background: 'rgba(0, 243, 255, 0.8)',
-                        boxShadow: '0 0 20px rgba(0, 243, 255, 0.8)'
+                        ...doorStyle,
+                        transform: isOpen ? 'translateX(100%) rotateY(15deg)' : 'translateX(0) rotateY(0deg)',
+                        transition: `transform ${doorDuration}s cubic-bezier(0.7, 0, 0.84, 0)`,
+                        borderLeft: '2px solid rgba(0, 243, 255, 0.5)',
                     }}></div>
                 </div>
-
-                {/* Left Door */}
-                <div style={{
-                    ...doorStyle,
-                    transform: isOpen ? 'translateX(-100%) rotateY(-15deg)' : 'translateX(0) rotateY(0deg)',
-                    transition: `transform ${doorDuration}s cubic-bezier(0.7, 0, 0.84, 0)`,
-                    borderRight: '2px solid rgba(0, 243, 255, 0.5)',
-                    boxShadow: 'inset -10px 0 50px rgba(0,0,0,0.8)',
-                    justifyContent: 'flex-end',
-                }}>
-                    {/* Decorative Panel Lines */}
-                    <div style={{
-                        position: 'absolute',
-                        top: '10%',
-                        bottom: '10%',
-                        right: '50px',
-                        width: '2px',
-                        background: 'rgba(0, 243, 255, 0.2)'
-                    }}></div>
-                </div>
-
-                {/* Right Door */}
-                <div style={{
-                    ...doorStyle,
-                    transform: isOpen ? 'translateX(100%) rotateY(15deg)' : 'translateX(0) rotateY(0deg)',
-                    transition: `transform ${doorDuration}s cubic-bezier(0.7, 0, 0.84, 0)`,
-                    borderLeft: '2px solid rgba(0, 243, 255, 0.5)',
-                    boxShadow: 'inset 10px 0 50px rgba(0,0,0,0.8)',
-                    justifyContent: 'flex-start'
-                }}>
-                    {/* Decorative Panel Lines */}
-                    <div style={{
-                        position: 'absolute',
-                        top: '10%',
-                        bottom: '10%',
-                        left: '50px',
-                        width: '2px',
-                        background: 'rgba(0, 243, 255, 0.2)'
-                    }}></div>
-                </div>
-            </div>
-
+            )}
 
             <header className="hero-section d-flex align-items-center" style={{
                 minHeight: '100vh',
@@ -242,8 +209,6 @@ const Header = () => {
                 overflow: 'hidden'
             }}>
                 <SineWave />
-
-                {/* Abstract Background Elements */}
                 <div style={{
                     position: 'absolute',
                     top: '50%',
@@ -283,29 +248,14 @@ const Header = () => {
                             </div>
 
                             <div className="d-flex justify-content-center gap-3 flex-wrap">
-                                <a href="#games-portfolio" className="btn-premium text-decoration-none">
-                                    View Portfolio
-                                </a>
-                                <a href="https://www.linkedin.com/in/raulxibarra" target="_blank" rel="noopener noreferrer" className="btn-premium text-decoration-none" style={{ borderColor: '#0077b5', color: '#fff', backgroundColor: 'rgba(0, 119, 181, 0.2)' }}>
-                                    Connect on LinkedIn
-                                </a>
-                                <a href="#contact" className="btn-premium text-decoration-none" style={{ borderColor: 'var(--text-secondary)', color: 'var(--text-secondary)' }}>
-                                    Contact Me
-                                </a>
+                                <a href="#games-portfolio" className="btn-premium text-decoration-none">View Portfolio</a>
+                                <a href="https://www.linkedin.com/in/raulxibarra" target="_blank" rel="noopener noreferrer" className="btn-premium text-decoration-none" style={{ borderColor: '#0077b5', color: '#fff', backgroundColor: 'rgba(0, 119, 181, 0.2)' }}>Connect on LinkedIn</a>
+                                <a href="#contact" className="btn-premium text-decoration-none" style={{ borderColor: 'var(--text-secondary)', color: 'var(--text-secondary)' }}>Contact Me</a>
                             </div>
                         </Col>
                     </Row>
                 </Container>
-                <div style={{
-                    position: 'absolute',
-                    bottom: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '150px',
-                    background: 'linear-gradient(to bottom, transparent, #050505)',
-                    zIndex: 3,
-                    pointerEvents: 'none'
-                }}></div>
+                <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '150px', background: 'linear-gradient(to bottom, transparent, #050505)', zIndex: 3, pointerEvents: 'none' }}></div>
             </header>
         </>
     );

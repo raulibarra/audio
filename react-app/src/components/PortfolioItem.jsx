@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { Row, Col, Carousel } from 'react-bootstrap';
-import { FaCode, FaTools, FaUser, FaBuilding, FaMicrochip, FaSearchPlus, FaTimes, FaGitlab, FaExternalLinkAlt, FaHandPointRight } from 'react-icons/fa';
+import { FaCode, FaTools, FaUser, FaBuilding, FaMicrochip, FaSearchPlus, FaTimes, FaGitlab, FaExternalLinkAlt, FaHandPointRight, FaLink } from 'react-icons/fa';
 
-const PortfolioItem = ({ title, subtitle, description, metadata, contributions, media, uniqueValue, techStack, technicalImages, showTechnical = false, soundcloudHeight = 100, repoUrl }) => {
+const PortfolioItem = ({ id, title, subtitle, description, metadata, contributions, media, uniqueValue, techStack, technicalImages, showTechnical = false, soundcloudHeight = 100, repoUrl }) => {
 
     const [activeSlide, setActiveSlide] = useState(0);
     const [expandedImage, setExpandedImage] = useState(null);
@@ -44,13 +44,25 @@ const PortfolioItem = ({ title, subtitle, description, metadata, contributions, 
     const hasTechnical = showTechnical && technicalImages && technicalImages.length > 0;
 
     return (
-        <div className="portfolio-item mb-5 p-4 glass-panel" style={{ transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}>
+        <div id={id} className="portfolio-item mb-5 p-4 glass-panel" style={{ transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}>
             <div className="text-white mb-3">
                 <div className="d-flex justify-content-between align-items-start flex-wrap">
-                    <div>
-                        <h3 style={{ color: 'var(--accent-primary)', marginBottom: '0.25rem' }}>{title}</h3>
-                        <h6 style={{ color: 'var(--text-secondary)', fontWeight: '400', letterSpacing: '0.05em' }}>{subtitle}</h6>
-                    </div>
+                        <a 
+                            href={`#${id}`} 
+                            className="project-link" 
+                            style={{ textDecoration: 'none' }} 
+                            title="Click to get deep link"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                window.history.pushState(null, null, `#${id}`);
+                                window.dispatchEvent(new Event('hashchange'));
+                            }}
+                        >
+                            <h3 style={{ color: 'var(--accent-primary)', marginBottom: '0.25rem', display: 'flex', alignItems: 'center', gap: '8.5px' }}>
+                                {title}
+                                <FaLink className="project-link-icon" style={{ fontSize: '0.7em', opacity: 0.4, transition: 'all 0.2s ease' }} />
+                            </h3>
+                        </a>
                     {/* Tech Stack Badges */}
                     {techStack && (
                         <div className="mt-2 mt-md-0 d-flex flex-wrap align-items-center" style={{ gap: '8px', justifyContent: 'flex-end' }}>

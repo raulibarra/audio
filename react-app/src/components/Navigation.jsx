@@ -76,11 +76,13 @@ const Navigation = () => {
                                 duration={1000}
                                 className="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
                                 style={{ cursor: 'pointer', fontSize: '0.9rem', fontWeight: '500' }}
-                                href="#about"
                                 onClick={() => {
                                     ProceduralAudio.playClick();
+                                    window.history.pushState(null, null, '#about');
+                                    window.dispatchEvent(new Event('hashchange'));
                                     setExpanded(false);
                                 }}
+                                href="#about"
                             >
                                 ABOUT
                             </Link>
@@ -95,10 +97,11 @@ const Navigation = () => {
                                 style={{ cursor: 'pointer', fontSize: '0.9rem', fontWeight: '500' }}
                                 onClick={() => {
                                     ProceduralAudio.playClick();
-                                    window.dispatchEvent(new CustomEvent('togglePortfolio', { detail: 'games-portfolio' }));
+                                    window.history.pushState(null, null, '#games');
+                                    window.dispatchEvent(new Event('hashchange'));
                                     setExpanded(false);
                                 }}
-                                href="#portfolio"
+                                href="#games"
                             >
                                 FEATURED PROJECTS
                             </Link>
@@ -113,10 +116,11 @@ const Navigation = () => {
                                 style={{ cursor: 'pointer', fontSize: '0.9rem', fontWeight: '500' }}
                                 onClick={() => {
                                     ProceduralAudio.playClick();
-                                    window.dispatchEvent(new CustomEvent('togglePortfolio', { detail: 'projects-portfolio' }));
+                                    window.history.pushState(null, null, '#technical');
+                                    window.dispatchEvent(new Event('hashchange'));
                                     setExpanded(false);
                                 }}
-                                href="#portfolio"
+                                href="#technical"
                             >
                                 TECHNICAL SHOWCASES
                             </Link>
@@ -129,11 +133,13 @@ const Navigation = () => {
                                 duration={1000}
                                 className="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
                                 style={{ cursor: 'pointer', fontSize: '0.9rem', fontWeight: '500' }}
-                                href="#contact"
                                 onClick={() => {
                                     ProceduralAudio.playClick();
+                                    window.history.pushState(null, null, '#contact');
+                                    window.dispatchEvent(new Event('hashchange'));
                                     setExpanded(false);
                                 }}
+                                href="#contact"
                             >
                                 CONTACT
                             </Link>

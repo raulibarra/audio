@@ -22,13 +22,16 @@
 
 :root {
   /* Cyber/Tech Palette */
-  --bg-primary: #050505;
-  --bg-secondary: #121212;
-  --bg-card: rgba(20, 20, 25, 0.7);
+  --bg-primary: #07091a;
+  /* Deep navy-black */
+  --bg-secondary: #0d1128;
+  /* Dark navy */
+  --bg-card: rgba(14, 18, 42, 0.85);
+  /* Navy-tinted card — clearly distinct from bg */
 
   --accent-primary: #00f3ff;
   /* Cyan */
-  --accent-secondary: #7000ff;
+  --accent-secondary: #c084fc;
   /* Electric Purple */
   --accent-glow: rgba(0, 243, 255, 0.15);
 
@@ -47,8 +50,9 @@
   --spacing-xl: 4rem;
 
   /* Effects */
-  --glass-border: 1px solid rgba(255, 255, 255, 0.08);
-  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.14);
+  /* Visible white outline */
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(0, 243, 255, 0.05);
   --transition-fast: 0.2s ease;
   --transition-medium: 0.3s ease;
 }
@@ -120,8 +124,8 @@ a:hover {
 
 .glass-panel {
   background: var(--bg-card);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
   border: var(--glass-border);
   box-shadow: var(--glass-shadow);
   border-radius: 16px;
@@ -146,8 +150,27 @@ a:hover {
   box-shadow: 0 0 15px var(--accent-glow);
 }
 
+.portfolio-item {
+  scroll-margin-top: 80px;
+}
+
+.project-link-icon {
+  opacity: 0.4;
+  color: var(--accent-primary);
+}
+
+.project-link:hover .project-link-icon {
+  opacity: 1 !important;
+  color: var(--accent-secondary);
+  transform: translateX(3px) scale(1.1);
+}
+
+.project-link:hover h3 {
+  text-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+}
+
 .bg-premium-gradient {
-  background: linear-gradient(180deg, var(--bg-primary) 0%, #0a0a12 100%);
+  background: linear-gradient(180deg, var(--bg-primary) 0%, #050810 100%);
 }
 
 /* Navigation Link Styles */

@@ -10,31 +10,73 @@ const Portfolio = () => {
     const [activeTab, setActiveTab] = useState('games-portfolio');
 
     useEffect(() => {
-        const handleToggle = (e) => {
-            setActiveTab(e.detail);
-            scroller.scrollTo('portfolio', {
-                duration: 1000,
-                delay: 0,
-                smooth: 'easeInOutQuart',
-                offset: -70
-            });
+        const handleHashChange = () => {
+            const hash = window.location.hash.replace('#', '');
+            if (!hash) return;
+
+            // Handle category-level deep links
+            if (hash === 'games' || hash === 'technical') {
+                const targetTab = hash === 'games' ? 'games-portfolio' : 'projects-portfolio';
+                if (activeTab !== targetTab) {
+                    setActiveTab(targetTab);
+                }
+                
+                // For category switches, we scroll to the top of the portfolio section
+                scroller.scrollTo('portfolio', {
+                    duration: 800,
+                    smooth: 'easeInOutQuart',
+                    offset: -70
+                });
+                return;
+            }
+
+            const isGame = gamesData.some(p => p.id === hash);
+            const isPersonal = personalData.some(p => p.id === hash);
+            
+            const targetTab = isGame ? 'games-portfolio' : (isPersonal ? 'projects-portfolio' : null);
+            if (!targetTab) return;
+
+            // If we need to switch tabs, do it first
+            if (activeTab !== targetTab) {
+                setActiveTab(targetTab);
+            }
+
+            // Small delay to allow category switch if needed
+            setTimeout(() => {
+                const element = document.getElementById(hash);
+                if (!element) return;
+                
+                const rect = element.getBoundingClientRect();
+                const currentY = window.scrollY;
+                const targetY = rect.top + currentY;
+                const distance = Math.abs(currentY - targetY + 80);
+
+                if (distance < 30) return;
+
+                element.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }, activeTab !== targetTab ? 150 : 10);
         };
 
-        window.addEventListener('togglePortfolio', handleToggle);
+        window.addEventListener('hashchange', handleHashChange);
+
+        // Initial check on mount
+        if (window.location.hash) {
+            handleHashChange();
+        }
+
         return () => {
-            window.removeEventListener('togglePortfolio', handleToggle);
+            window.removeEventListener('hashchange', handleHashChange);
         };
-    }, []);
+    }, [activeTab]); // React to activeTab changes to keep closures fresh
 
     const toggleTab = (tab) => {
         ProceduralAudio.playClick();
-        setActiveTab(tab);
-        scroller.scrollTo('portfolio', {
-            duration: 1000,
-            delay: 0,
-            smooth: 'easeInOutQuart',
-            offset: -70
-        });
+        const newHash = tab === 'games-portfolio' ? '#games' : '#technical';
+        window.history.pushState(null, null, newHash);
+        window.dispatchEvent(new Event('hashchange'));
     };
 
     return (
@@ -59,7 +101,7 @@ const Portfolio = () => {
                 {activeTab === 'games-portfolio' && (
                     <div id="games-portfolio" className="toggle-div visible">
                         {gamesData.map(project => (
-                            <PortfolioItem key={project.id} {...project} />
+                            <PortfolioItem key={project.id} id={project.id} {...project} />
                         ))}
                         <div className="text-center" style={{ paddingTop: '3vh' }}>
                             <h3>
@@ -72,7 +114,7 @@ const Portfolio = () => {
                 {activeTab === 'projects-portfolio' && (
                     <div id="projects-portfolio" className="toggle-div visible">
                         {personalData.map(project => (
-                            <PortfolioItem key={project.id} {...project} />
+                            <PortfolioItem key={project.id} id={project.id} {...project} />
                         ))}
                         <div className="text-center">
                             <h4>
